@@ -34,7 +34,9 @@ Google calendar API Example driving Raspberry GPIOs
   
 - Get the OAuth2 credential file for your calendar
         
+        get the json credential files from https://console.developers.google.com
         copy the file into /srv/gcalendar/daemon/client_secret.json
+  see https://developers.google.com/google-apps/calendar/ for help on how to generate credentials for your application.
 
 
 - Create the log files with correct rights
