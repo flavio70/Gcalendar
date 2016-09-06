@@ -64,6 +64,7 @@ def logError():
 
 # The scope URL for read/write access to a user's calendar data
 SCOPES = 'https://www.googleapis.com/auth/calendar'
+# Replace CAL_ID with your current google calendar Id
 CAL_ID = 'xxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com'
 
 
@@ -72,10 +73,10 @@ CAL_ID = 'xxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com'
 #
 # Uncomment the following 4 lines and fill the PROXY_IP & PROXY_PORT vars
 # in case you are using a proxy
-PROXY_IP='xxx.xxx.xxx.xxx'
-PROXY_PORT=xxxx
-socks.setdefaultproxy(socks.PROXY_TYPE_HTTP, PROXY_IP, PROXY_PORT)
-socks.wrapmodule(httplib2)
+#PROXY_IP='xxx.xxx.xxx.xxx'
+#PROXY_PORT=xxxx
+#socks.setdefaultproxy(socks.PROXY_TYPE_HTTP, PROXY_IP, PROXY_PORT)
+#socks.wrapmodule(httplib2)
 
 # Create an httplib2.Http object to handle our HTTP requests
 # httpclient must be also used when calling tools.run_flow in case of proxy usage
