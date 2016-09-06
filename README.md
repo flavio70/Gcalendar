@@ -20,15 +20,22 @@ Google calendar API Example driving Raspberry GPIOs
 - Copy the main code folder daemon
 
         sudo cp -R Gcalendar/daemon /srv/gcalendar
-  
-  into /srv/gcalendar/daemon/gcalendar source code the CAL_ID variable must be set to the correct google calendar ID.
-  Please see https://developers.google.com/google-apps/calendar/ for help on setting google api rights
-
-
+        
+ 
+ 
 - Give the rights
 
         sudo chown -R root:root /srv/gcalendar
         sudo chmod -R 775 /srv/gcalendar
+ 
+  
+  into /srv/gcalendar/daemon/gcalendar.py source code the CAL_ID variable must be set to the correct google calendar ID.
+  Please see https://developers.google.com/google-apps/calendar/ for help on setting google api rights.
+  
+- Get the OAuth2 credential file for your calendar
+        
+        copy the file into /srv/gcalendar/daemon/client_secret.json
+
 
 - Create the log files with correct rights
 
