@@ -1,0 +1,66 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          GCalendar
+# Required-Start:    $local_fs $network $named $time $syslog
+# Required-Stop:     $local_fs $network $named $time $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       Gcalendar daemon
+### END INIT INFO
+
+SCRIPT1='python3 /srv/gcalendar/daemon/gcalendar.py'
+RUNAS1=root
+
+
+PIDFILE1=/var/run/gcalendar.pid
+
+
+start() {
+  mkdir -p /var/log/gcalendar
+  chown -R $RUNAS1:$RUNAS1 /var/log/gcalendar
+  chmod -R 775 /var/log/gcalendar
+  
+  if [ -f /var/run/$PIDNAME1 ] && kill -0 $(cat /var/run/$PIDNAME1); then
+    echo 'Service 1 already running' >&2
+    echo 'Service  already running'
+    return 1
+  else
+    echo 'Starting service 1' >&2
+    echo 'Starting Service...'
+    local CMD1="$SCRIPT1 & echo \$!"
+    su -c "$CMD1" $RUNAS1 > "$PIDFILE1"
+    echo '...started'
+  fi
+
+
+}
+
+stop() {
+  local PID1=$(cat "$PIDFILE1")
+  if [ ! -f "$PIDFILE1" ] || ! kill -0 "$PID1"; then
+    echo 'Service 1 not running' >&2
+    echo 'Service not running'
+  else
+    echo 'Stopping service 1' >&2
+    echo 'Stopping service...'
+    kill -15 "$PID1" && rm -f "$PIDFILE1"
+    echo 'Service 1 stopped' >&2
+    echo 'Service stopped'
+  fi
+
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|uninstall}"
+esac
